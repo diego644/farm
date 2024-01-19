@@ -1,0 +1,206 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PostController!
+{% endblock %}
+
+{% block body %}
+
+	<div class="main_content_iner overly_inner ">
+		<div class="container-fluid p-0">
+			<div class="row justify-content-center">
+				<div class="col-lg-12">
+					<div class="white_card card_height_100 mb_30">
+						<div class="white_card_header">
+							<div class="box_header m-0">
+								<div class="main-title">
+									<h3 class="m-0">MEDICINA EXCLUIDA</h3>
+								</div>
+							</div>
+						</div>
+
+						<div class="white_card_body">
+							<span>IOMA: No autoriza NA. No se arma planilla. Se envia mail a facturación con copia a auditoria</span><br>
+							<span>PARTICULAR: Se debe avisar a la oficina de internación (137). Mail a facturación</span><br>
+							<span>Halthy/Atsa: no se hace planilla. Se envia mail a of. De facturación</span>
+							<div class="QA_section">
+
+								<div class="white_box_tittle list_header">
+									<h4>Agosto</h4>
+									<div class="box_right d-flex lms_block">
+										<div class="serach_field_2">
+											<div class="search_inner">
+												<form active="#">
+													<div class="search_field">
+														<input type="text" placeholder="Search content here...">
+													</div>
+													<button type="submit">
+														<i class="ti-search"></i>
+													</button>
+												</form>
+											</div>
+										</div>
+										<div class="add_button ms-2">
+											<a href="#" data-bs-toggle="modal" data-bs-target="#addcategory" class="btn_1">Add New</a>
+										</div>
+									</div>
+								</div>
+								<div class="QA_table mb_30">
+
+									<table class="table table-striped ">
+										<thead>
+											<tr>
+												<th scope="col">FECHA</th>
+												<th scope="col">HORA</th>
+												<th scope="col">PACIENTE</th>
+												<th scope="col">SECTOR</th>
+												<th scope="col">MEDICACIÓN</th>
+												<th scope="col">PRESENTACIÓN</th>
+												<th scope="col">CANTIDAD</th>
+												<th scope="col">DOSIS DIARIA</th>
+												<th scope="col">OBSERVACIONES</th>
+												<th scope="col">DETALLES</th>
+											</tr>
+										</thead>
+										<tbody>
+
+											{% for post in posts %}
+												<tr>
+													<th scope="row">
+														<a href="#" class="question_content" onClick="MeGusta({{ post.fecha }})">
+															{{ post.fecha}}</a>
+													</th>
+													<th scope="row">
+														<a href="#" class="question_content">
+															{{ post.hora}}</a>
+													</th>
+													<th scope="row">
+														<a href="#" class="question_content">
+															{{ post.paciente}}</a>
+													</th>
+													<th scope="row">
+														<a href="#" class="question_content">
+															{{ post.sector}}</a>
+													</th>
+													<th scope="row">
+														<a href="#" class="question_content">
+															{{ post.medicacion}}</a>
+													</th>
+													<th scope="row">
+														<a href="#" class="question_content">
+															{{ post.presentacion}}</a>
+													</th>
+													<th scope="row">
+														<a href="#" class="question_content">
+															{{ post.cantidad}}</a>
+													</th>
+													<th scope="row">
+														<a href="#" class="question_content">
+															{{ post.dosisDiaria}}</a>
+													</th>
+													<th scope="row">
+														<a href="#" class="question_content">
+															{{ post.observaciones}}</a>
+													</th>
+													<th scope="row">
+														<a href="#" class="question_content">
+															{{ post.detalles}}</a>
+													</th>
+												</tr>
+											{% endfor %}
+
+
+										</tbody>
+									</table>
+
+									{# display navigation #}
+									<div class="navigation">
+										{{ knp_pagination_render(posts) }}
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-12"></div>
+
+				
+
+				<div class="col-lg-12">
+					<div class="white_card card_height_100 mb_30">
+						<div class="white_card_header">
+							<div class="box_header m-0">
+								<div class="main-title">
+									<h3 class="m-0">Agregar</h3>
+								</div>
+
+							</div>
+						</div>
+						<div class="white_card_body">
+							<div class="card-body">
+								{{ form_start(form) }}
+
+									<div class="row mb-3">
+										<div class="col-md-1">
+											{{ form_label(form.fecha)}}
+											{{ form_widget(form.fecha, { 'attr': {'class': 'form-control', 'placeholder': 'Fecha'} })}}
+										</div>
+										<div class="col-md-1">
+											{{ form_label(form.hora)}}
+											{{ form_widget(form.hora, { 'attr': {'class': 'form-control', 'placeholder': 'Hora'} })}}
+										</div>
+										<div class="col-md-2">
+											{{ form_label(form.paciente)}}
+											{{ form_widget(form.paciente, { 'attr': {'class': 'form-control', 'placeholder': 'Paciente'} })}}
+										</div>
+										<div class="col-md-1">
+											{{ form_label(form.sector)}}
+											{{ form_widget(form.sector, { 'attr': {'class': 'form-control', 'placeholder': 'Sector'} })}}
+										</div>
+										<div class="col-md-2">
+											{{ form_label(form.medicacion)}}
+											{{ form_widget(form.medicacion, { 'attr': {'class': 'form-control', 'placeholder': 'Medicacion'} })}}
+										</div>
+										<div class="col-md-2">
+											{{ form_label(form.presentacion)}}
+											{{ form_widget(form.presentacion, { 'attr': {'class': 'form-control', 'placeholder': 'Precentación'} })}}
+										</div>
+									</div>
+									<div class="row mb-3">
+										<div class="col-md-1">
+											{{ form_label(form.cantidad)}}
+											{{ form_widget(form.cantidad, { 'attr': {'class': 'form-control', 'placeholder': 'Cantidad'} })}}
+										</div>
+										<div class="col-md-2">
+											{{ form_label(form.dosisDiaria)}}
+											{{ form_widget(form.dosisDiaria, { 'attr': {'class': 'form-control', 'placeholder': 'Docis diaria'} })}}
+										</div>
+										<div class="col-md-3">
+											{{ form_label(form.observaciones)}}
+											{{ form_widget(form.observaciones, { 'attr': {'class': 'form-control', 'placeholder': 'Observaciones'} })}}
+										</div>
+										<div class="col-md-2">
+											{{ form_label(form.detalles)}}
+											{{ form_widget(form.detalles, { 'attr': {'class': 'form-control', 'placeholder': 'Detalles'} })}}
+										</div>
+									</div>
+
+									{{ form_widget(form.Grabar, {'attr':{'class':'btn btn-primary'}})}}
+
+								{{ form_end(form) }}
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+
+		{#
+								{{ dump(posts)}}
+						
+						#}
+	{% endblock %}
